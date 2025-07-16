@@ -92,6 +92,7 @@ class StepikCourseRegistration(BaseCourseRegistration):
                         logging.WARNING,
                         f"Не получилось зарегистрировать  {i+1} пользователя, перехожу к другому",
                     )
+                    current_bias += 1
                     continue
                 except StepikUserAlreadyRegisteredException:
                     self.log(
@@ -99,10 +100,13 @@ class StepikCourseRegistration(BaseCourseRegistration):
                         f"Пользователь {i+1} пользователя уже зарегистрирован, пытаюсь войти",
                     )
                     if not self._try_login_into_account(driver, user):
+
                         self.log(
                             logging.ERROR,
                             f"Данные от аккаунта {i+1} пользователя неверны, перехожу к другому",
                         )
+
+                        current_bias += 1
                         continue
 
                     # self.log(
