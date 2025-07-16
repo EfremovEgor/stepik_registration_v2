@@ -119,7 +119,18 @@ class StepikCourseRegistration(BaseCourseRegistration):
                 total_registered_in_this_batch += 1
                 current_bias += 1
                 self.total_registered += amount
+
+                self.log(
+                    logging.INFO,
+                    f"Пользователя {i+1} получилось зарегистрировать на {amount} курсов",
+                )
+                self.log(
+                    logging.INFO,
+                    f"Зарегистрировано всего {self.total_registered} из {registration_pattern.total_to_register} в сумме по всем курсам",
+                )
+
                 sleep_time = registration_pattern.get_next_interval()
+
                 if sleep_time is not None:
                     self.log(
                         logging.INFO,
