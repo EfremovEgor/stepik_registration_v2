@@ -20,8 +20,8 @@ formatter = logging.Formatter(
 console_handler.setFormatter(formatter)
 registrator = StepikCourseRegistration(logger)
 strategy = RandomUserAcquisition()
-registration_pattern = BaseRegistrationPattern(80000)
-registration_pattern.set_batch_size(lambda: random.randint(15, 25))
+registration_pattern = BaseRegistrationPattern(50000)
+registration_pattern.set_batch_size(lambda: random.randint(25, 35))
 registration_pattern.set_interval(lambda: random.randint(5, 15))
 registration_pattern.set_interval_between_batches(lambda: random.randint(72000, 86400))
 
